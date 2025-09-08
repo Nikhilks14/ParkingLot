@@ -10,7 +10,4 @@ public class ParkingLotApplication {
 		SpringApplication.run(ParkingLotApplication.class, args);
 		System.out.println("Parking Lot Program Started");
 	}
-
-
-
 }
