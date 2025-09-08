@@ -1,0 +1,16 @@
+package com.ParkingSystem.Parking.Lot;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ParkingLotApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ParkingLotApplication.class, args);
+		System.out.println("Parking Lot Program Started");
+	}
+
+
+
+}
