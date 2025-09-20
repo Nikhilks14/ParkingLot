@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 import java.time.Instant;
 
 @Service
-@RequiredArgsConstructor
 public class PricingService {
     private final RateCardRepository cardRepo;
     private final PriceRuleRepository ruleRepo;

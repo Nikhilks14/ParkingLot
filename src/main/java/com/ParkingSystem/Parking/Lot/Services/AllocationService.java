@@ -12,7 +12,6 @@ import java.util.NoSuchElementException;
 
 
 @Service
-@RequiredArgsConstructor
 public class AllocationService {
     private final ParkingSpotRepository spotRepo;
     private final CompatibilityService compat;

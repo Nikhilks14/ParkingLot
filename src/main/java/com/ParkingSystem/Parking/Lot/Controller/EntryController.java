@@ -1,8 +1,5 @@
 package com.ParkingSystem.Parking.Lot.Controller;
 
-
-
-
 import com.ParkingSystem.Parking.Lot.DTOs.EntryRequest;
 import com.ParkingSystem.Parking.Lot.DTOs.EntryResponse;
 import com.ParkingSystem.Parking.Lot.Services.TicketService;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/entries")
 public class EntryController {
+
     private final TicketService tickets;
 
     public EntryController(TicketService tickets) {

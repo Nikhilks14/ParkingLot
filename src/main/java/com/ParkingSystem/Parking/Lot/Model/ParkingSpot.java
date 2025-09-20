@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "parking_spot",
-        indexes = {@Index(columnList = "status"),
+        indexes = {@Index(columnList = "spotStatus"),
                 @Index(columnList = "spotType")})
 
 @Getter
@@ -32,9 +32,7 @@ public class ParkingSpot {
         return code;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
+
 
     public SpotType getSpotType() {
         return spotType;

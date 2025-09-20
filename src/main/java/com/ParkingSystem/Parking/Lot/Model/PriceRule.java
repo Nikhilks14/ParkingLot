@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.math.RoundingMode;
 
 @Entity
 @Table(name = "price_rule")
@@ -13,59 +13,41 @@ import java.math.BigInteger;
 @Setter
 public class PriceRule {
     @Id
-    @GeneratedValue
-    Long id;
-    @ManyToOne(fetch = FetchType.LAZY) RateCard rateCard;
-    Integer fromMinute;
-    Integer toMinute;
-    BigInteger flat;
-    BigDecimal perHour;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public Long getId() {
-        return id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rate_card_id", nullable = false)
+    private RateCard rateCard;
+
+    private Integer fromMinute;
+    private Integer toMinute;
+
+    private BigDecimal flat;      // Changed from BigInteger to BigDecimal
+    private BigDecimal perHour;   // Keep consistent with monetary values
+
+
+
+    /**
+     * Apply this rule to calculate price for given minutes.
+     */
+    public BigDecimal apply(BigDecimal minutes) {
+        if (minutes.intValue() < fromMinute ||
+                (toMinute != null && minutes.intValue() > toMinute)) {
+            return BigDecimal.ZERO;
+        }
+
+        if (flat != null) {
+            return flat;
+        }
+
+        if (perHour != null) {
+            BigDecimal hours = minutes
+                    .divide(BigDecimal.valueOf(60), 2, RoundingMode.CEILING);
+            return perHour.multiply(hours);
+        }
+
+        return BigDecimal.ZERO;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public RateCard getRateCard() {
-        return rateCard;
-    }
-
-    public void setRateCard(RateCard rateCard) {
-        this.rateCard = rateCard;
-    }
-
-    public Integer getFromMinute() {
-        return fromMinute;
-    }
-
-    public void setFromMinute(Integer fromMinute) {
-        this.fromMinute = fromMinute;
-    }
-
-    public Integer getToMinute() {
-        return toMinute;
-    }
-
-    public void setToMinute(Integer toMinute) {
-        this.toMinute = toMinute;
-    }
-
-    public BigInteger getFlat() {
-        return flat;
-    }
-
-    public void setFlat(BigInteger flat) {
-        this.flat = flat;
-    }
-
-    public BigDecimal getPerHour() {
-        return perHour;
-    }
-
-    public void setPerHour(BigDecimal perHour) {
-        this.perHour = perHour;
-    }
 }

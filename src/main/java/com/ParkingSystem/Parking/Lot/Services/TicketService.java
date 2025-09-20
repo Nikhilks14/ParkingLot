@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 
 @Service
-@RequiredArgsConstructor
 public class TicketService {
     private final VehicleRepository vehRepo;
     private final TicketRepository ticketRepo;
@@ -28,7 +27,7 @@ public class TicketService {
 
     @Transactional
     public Ticket createEntry(String plate, VehicleType type){
-        var vehicle = vehRepo.findByPlate(plate).orElseGet(() -> vehRepo.save(new Vehicle(null, plate, type, null, null, null)));
+        var vehicle = vehRepo.findByPlate(plate).orElseGet(() -> vehRepo.save(new Vehicle(null, plate, type, null, null)));
         var spot = alloc.allocate(type);
         var t = new Ticket();
         t.setVehicle(vehicle);

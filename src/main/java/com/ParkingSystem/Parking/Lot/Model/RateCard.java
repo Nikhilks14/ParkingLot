@@ -9,8 +9,6 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "rate_card")
-@Getter
-@Setter
 public class RateCard {
     @Id
     @GeneratedValue
