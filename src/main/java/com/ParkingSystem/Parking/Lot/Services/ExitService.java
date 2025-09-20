@@ -14,7 +14,6 @@ import java.time.Instant;
 
 
 @Service
-@RequiredArgsConstructor
 public class ExitService {
     private final TicketRepository ticketRepo;
     private final AllocationService alloc;

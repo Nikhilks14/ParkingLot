@@ -12,8 +12,7 @@ import lombok.Setter;
         indexes = {@Index(columnList = "spotStatus"),
                 @Index(columnList = "spotType")})
 
-@Getter
-@Setter
+
 public class ParkingSpot {
     @Id
     @GeneratedValue
@@ -22,17 +21,23 @@ public class ParkingSpot {
     @Enumerated(EnumType.STRING) SpotType spotType;
     @Enumerated(EnumType.STRING) SpotStatus spotStatus;
     @ManyToOne(fetch = FetchType.LAZY) Level level;
-    // Long version;
+
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCode() {
         return code;
     }
 
-
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     public SpotType getSpotType() {
         return spotType;
@@ -57,6 +62,4 @@ public class ParkingSpot {
     public void setLevel(Level level) {
         this.level = level;
     }
-
-
 }

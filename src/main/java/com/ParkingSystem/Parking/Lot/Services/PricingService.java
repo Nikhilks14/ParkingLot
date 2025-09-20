@@ -4,7 +4,6 @@ import com.ParkingSystem.Parking.Lot.Model.Ticket;
 import com.ParkingSystem.Parking.Lot.Repositories.PriceRuleRepository;
 import com.ParkingSystem.Parking.Lot.Repositories.RateCardRepository;
 import com.ParkingSystem.Parking.Lot.Services.ServiceImpl.PricingStrategy;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

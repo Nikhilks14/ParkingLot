@@ -2,18 +2,25 @@ package com.ParkingSystem.Parking.Lot.Model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "parking_lot")
 @Getter
 @Setter
+@NoArgsConstructor
 public class ParkingLot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String name;
     String address;
+
+//    public ParkingLot(String name, String address) {
+//        this.name = name;
+//        this.address = address;
+//    }
 
     public Long getId() {
         return id;

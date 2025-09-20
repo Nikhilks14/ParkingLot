@@ -2,21 +2,28 @@ package com.ParkingSystem.Parking.Lot.Model;
 
 import com.ParkingSystem.Parking.Lot.Enum.VehicleType;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "rate_card")
+@NoArgsConstructor
 public class RateCard {
     @Id
     @GeneratedValue
     Long id;
-    @Enumerated(EnumType.STRING) VehicleType vehicleType;
+    @Enumerated(EnumType.STRING)
+    VehicleType vehicleType;
     BigDecimal basePerHour;
     Integer graceMintes;
     BigDecimal dailyCap;
+
+    public RateCard(VehicleType vehicleType, BigDecimal bigDecimal, int i, BigDecimal bigDecimal1) {
+    }
 
     public Long getId() {
         return id;
