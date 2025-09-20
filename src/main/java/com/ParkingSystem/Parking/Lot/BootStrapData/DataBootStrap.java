@@ -117,7 +117,7 @@ public class DataBootStrap implements CommandLineRunner {
 
 
 
-        System.out.println("Bootstrapped parking lot data successfully!");
+        System.out.println("Bootstrapped parking lot data added successfully!");
 
 
     }

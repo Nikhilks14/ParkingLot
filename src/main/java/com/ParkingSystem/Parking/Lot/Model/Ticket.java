@@ -15,7 +15,8 @@ import java.time.Instant;
 
 
 public class Ticket {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @ManyToOne(fetch = FetchType.LAZY) Vehicle vehicle;
     @ManyToOne(fetch = FetchType.LAZY) ParkingSpot spot;

@@ -15,7 +15,7 @@ import lombok.Setter;
 
 public class ParkingSpot {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id; // eg L1-R12
     String code;
     @Enumerated(EnumType.STRING) SpotType spotType;

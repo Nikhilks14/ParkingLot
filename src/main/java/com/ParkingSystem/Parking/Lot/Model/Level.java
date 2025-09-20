@@ -9,7 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Level {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String name;
     String floor;

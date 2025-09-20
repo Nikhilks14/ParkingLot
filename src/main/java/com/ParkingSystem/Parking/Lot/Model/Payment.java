@@ -16,7 +16,7 @@ import java.time.Instant;
 public class Payment {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @OneToOne(fetch = FetchType.LAZY) Ticket ticket;
     @Enumerated(EnumType.STRING) PaymentStatus status;

@@ -3,15 +3,18 @@ package com.ParkingSystem.Parking.Lot.Model;
 import com.ParkingSystem.Parking.Lot.Enum.VehicleType;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "vehicle",
         indexes = @Index(columnList = "plate", unique = true))
 
 
 public class Vehicle {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String plate;
     @Enumerated(EnumType.STRING) VehicleType vehicleType;

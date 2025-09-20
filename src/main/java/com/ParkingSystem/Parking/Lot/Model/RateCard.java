@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class RateCard {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @Enumerated(EnumType.STRING)
     VehicleType vehicleType;
@@ -22,7 +22,11 @@ public class RateCard {
     Integer graceMintes;
     BigDecimal dailyCap;
 
-    public RateCard(VehicleType vehicleType, BigDecimal bigDecimal, int i, BigDecimal bigDecimal1) {
+    public RateCard(VehicleType vehicleType, BigDecimal basePerHour, Integer graceMintes, BigDecimal dailyCap) {
+        this.vehicleType = vehicleType;
+        this.basePerHour = basePerHour;
+        this.graceMintes = graceMintes;
+        this.dailyCap = dailyCap;
     }
 
     public Long getId() {
