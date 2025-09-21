@@ -22,6 +22,10 @@ public class ParkingSpot {
     @Enumerated(EnumType.STRING) SpotStatus spotStatus;
     @ManyToOne(fetch = FetchType.LAZY) Level level;
 
+    @Version
+    private Long version;
+
+
 
     public Long getId() {
         return id;
@@ -62,4 +66,13 @@ public class ParkingSpot {
     public void setLevel(Level level) {
         this.level = level;
     }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
 }

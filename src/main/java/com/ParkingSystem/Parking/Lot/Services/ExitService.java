@@ -7,7 +7,7 @@ import com.ParkingSystem.Parking.Lot.Model.Payment;
 import com.ParkingSystem.Parking.Lot.Repositories.PaymentRepository;
 import com.ParkingSystem.Parking.Lot.Repositories.TicketRepository;
 import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;

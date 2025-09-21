@@ -42,31 +42,37 @@ public class DataBootStrap implements CommandLineRunner {
     @Transactional
     public void run(String... args) throws Exception {
 
-        // RATECARD
-        rateCardRepo.save(
-                new RateCard(
-                        VehicleType.MOTORCYCLE,
-                        BigDecimal.valueOf(20),
-                        15,
-                        BigDecimal.valueOf(150)));
 
-        rateCardRepo.save(
-                new RateCard(
-                        VehicleType.CAR,
-                        BigDecimal.valueOf(40),
-                        15,
-                        BigDecimal.valueOf(300)));
+        if(rateCardRepo.count() == 0){
+            // RATECARD
+            rateCardRepo.save(
+                    new RateCard(
+                            VehicleType.MOTORCYCLE,
+                            BigDecimal.valueOf(20),
+                            1,
+                            BigDecimal.valueOf(150)));
 
-        rateCardRepo.save(
-                new RateCard(
-                        VehicleType.TRUCK,
-                        BigDecimal.valueOf(80),
-                        10,
-                        BigDecimal.valueOf(150))
-        );
+            rateCardRepo.save(
+                    new RateCard(
+                            VehicleType.CAR,
+                            BigDecimal.valueOf(40),
+                            1,
+                            BigDecimal.valueOf(300)));
+
+            rateCardRepo.save(
+                    new RateCard(
+                            VehicleType.TRUCK,
+                            BigDecimal.valueOf(80),
+                            1
+                            ,
+                            BigDecimal.valueOf(150))
+            );
+        }
 
 
-        // --- Parking lot ---
+        if (parkingLotRepo.count() == 0){
+
+            // --- Parking lot ---
 
 //        List<ParkingLot> lot = List.of(
 //                new ParkingLot("Central Mall", "Delhi"),
@@ -74,51 +80,64 @@ public class DataBootStrap implements CommandLineRunner {
 //        );
 //        lot.forEach(parkingLotRepo::save);
 
+            // --- Parking lot ---
+            ParkingLot lot = new ParkingLot();
+            lot.setName("Central Parkade");
+            lot.setAddress("MG Road");
+            parkingLotRepo.save(lot);
 
 
-        // --- Parking lot ---
-        ParkingLot lot = new ParkingLot();
-        lot.setName("Central Parkade");
-        lot.setAddress("MG Road");
-        parkingLotRepo.save(lot);
+            // --- Levels ---
+            Level l1 = new Level();
+            l1.setName("L1");
+            l1.setFloor("1");
+            l1.setLot(lot);
+            levelRepo.save(l1);
 
-        // --- Levels ---
-        Level l1 = new Level();
-        l1.setName("L1");
-        l1.setFloor("1");
-        l1.setLot(lot);
-        levelRepo.save(l1);
-
-        Level l2 = new Level();
-        l2.setName("L2");
-        l2.setFloor("2");
-        l2.setLot(lot);
-        levelRepo.save(l2);
+            Level l2 = new Level();
+            l2.setName("L2");
+            l2.setFloor("2");
+            l2.setLot(lot);
+            levelRepo.save(l2);
 
 
-        // --- Spot types and counts for L1 ---
-        Map<SpotType, Integer> spotCounts = Map.of(
-                SpotType.BIKE, 10,
-                SpotType.COMPACT, 20,
-                SpotType.REGULAR, 20,
-                SpotType.LARGE, 10
-        );
-
-        spotCounts.forEach((type, count) ->
-                IntStream.rangeClosed(1, count).forEach(n -> {
-                    ParkingSpot spot = new ParkingSpot();
-                    spot.setCode("L1-" + type.name().charAt(0) + "-" + n); // e.g., L1-B-1
-                    spot.setSpotType(type);
-                    spot.setSpotStatus(SpotStatus.AVAILABLE);
-                    spot.setLevel(l1); // associate with Level 1
-                    parkingSpotRepo.save(spot);
-                })
-        );
+            // --- Spot types and counts for L1 ---
+            Map<SpotType, Integer> spotCounts = Map.of(
+                    SpotType.BIKE, 10,
+                    SpotType.COMPACT, 20,
+                    SpotType.REGULAR, 20,
+                    SpotType.LARGE, 10
+            );
 
 
+            // Generate spots for L1
+            spotCounts.forEach((type, count) ->
+                    IntStream.rangeClosed(1, count).forEach(n -> {
+                        ParkingSpot spot = new ParkingSpot();
+                        spot.setCode("L1-" + type.name().charAt(0)  + n); // e.g., L1-B-1
+                        spot.setSpotType(type);
+                        spot.setSpotStatus(SpotStatus.AVAILABLE);
+                        spot.setLevel(l1); // associate with Level 1
+                        parkingSpotRepo.save(spot);
+                    })
+            );
 
-        System.out.println("Bootstrapped parking lot data added successfully!");
+            // Generate spots for L2
+            spotCounts.forEach((type, count) ->
+                    IntStream.rangeClosed(1, count).forEach(n -> {
+                        ParkingSpot spot = new ParkingSpot();
+                        spot.setCode("L2-" + type.name().charAt(0)  + n); // e.g., L2-B-1
+                        spot.setSpotType(type);
+                        spot.setSpotStatus(SpotStatus.AVAILABLE);
+                        spot.setLevel(l2);
+                        parkingSpotRepo.save(spot);
+                    })
+            );
 
+
+            System.out.println("Bootstrapped parking lot data added successfully!");
+
+        }
 
     }
 }

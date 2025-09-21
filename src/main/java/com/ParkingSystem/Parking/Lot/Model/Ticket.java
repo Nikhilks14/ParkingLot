@@ -25,6 +25,10 @@ public class Ticket {
     Instant exitTime;
     BigDecimal fee;
 
+
+    public Ticket() {
+    }
+
     public Long getId() {
         return id;
     }

@@ -11,16 +11,21 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "rate_card")
-@NoArgsConstructor
 public class RateCard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
     @Enumerated(EnumType.STRING)
+    @Column(name = "vehicleType", columnDefinition = "VARCHAR(255) NOT NULL")
     VehicleType vehicleType;
     BigDecimal basePerHour;
     Integer graceMintes;
     BigDecimal dailyCap;
+
+
+    public RateCard() {
+    }
 
     public RateCard(VehicleType vehicleType, BigDecimal basePerHour, Integer graceMintes, BigDecimal dailyCap) {
         this.vehicleType = vehicleType;

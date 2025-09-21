@@ -16,7 +16,6 @@ import java.time.Instant;
 
 @RestController
 @RequestMapping("/api/exits")
-@RequiredArgsConstructor
 public class ExitController {
     private final ExitService exits;
     private final TicketRepository ticketRepo;

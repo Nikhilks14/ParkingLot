@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@NoArgsConstructor
 @Table(name = "vehicle",
         indexes = @Index(columnList = "plate", unique = true))
 
@@ -20,6 +19,9 @@ public class Vehicle {
     @Enumerated(EnumType.STRING) VehicleType vehicleType;
     String color;
     String model;
+
+    protected Vehicle() {
+    }
 
     public Vehicle(Long id, String plate, VehicleType vehicleType, String color, String model) {
         this.id = id;
